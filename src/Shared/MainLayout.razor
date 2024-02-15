@@ -2,12 +2,14 @@
 
 <PageTitle>Blazor Blog</PageTitle>
 
-<div class="page">
-    @*<TopNavBar />*@
+<div class="page d-flex flex-column">
+    <div class="container-fluid bg-main">
+        <TopNavBar />
+    </div>
     <div class="container-fluid">
         @Body
     </div>
-    <footer>
-        <p>Blog App built using Blazor Server by <a href=""><strong>jpastolfi</strong></a></p>
+    <footer class="fixed-bottom text-center d-flex align-items-center justify-content-center footer">
+        <p class="mb-0 py-2">Blog App built using Blazor Server by <a href=""><strong>jpastolfi</strong></a></p>
     </footer>
 </div>

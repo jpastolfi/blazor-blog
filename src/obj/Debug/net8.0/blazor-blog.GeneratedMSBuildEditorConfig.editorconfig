@@ -22,20 +22,12 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/jpastolfi/blazor-blog/src/Pages/Counter.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ291bnRlci5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/jpastolfi/blazor-blog/src/Pages/FetchData.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmV0Y2hEYXRhLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
 [/Users/jpastolfi/blazor-blog/src/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/jpastolfi/blazor-blog/src/Shared/SurveyPrompt.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL1N1cnZleVByb21wdC5yYXpvcg==
+[/Users/jpastolfi/blazor-blog/src/Shared/TopNavBar.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL1RvcE5hdkJhci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/jpastolfi/blazor-blog/src/_Imports.razor]
@@ -45,10 +37,6 @@ build_metadata.AdditionalFiles.CssScope =
 [/Users/jpastolfi/blazor-blog/src/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL01haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-smpzu8v93r
-
-[/Users/jpastolfi/blazor-blog/src/Shared/NavMenu.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL05hdk1lbnUucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-j09fvaf63n
 
 [/Users/jpastolfi/blazor-blog/src/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s

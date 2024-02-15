@@ -12,12 +12,12 @@ public class BlogContext : DbContext
   public DbSet<BlogPost> BlogPosts { get; set; }
   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
   {
-    /* if (!optionsBuilder.IsConfigured)
+    if (!optionsBuilder.IsConfigured)
     {
-      var connectionString = "Server=localhost;Database=blazor-blog;User=SA;Password=Blazing;TrustServerCertificate=True";
+      var connectionString = "Server=localhost;Database=blazor-blog;User=SA;Password=BlazingBlog1234!;TrustServerCertificate=True";
       optionsBuilder.UseSqlServer(connectionString);
-    } */
-    base.OnConfiguring(optionsBuilder);
+    }
+    /* base.OnConfiguring(optionsBuilder); */
 #if DEBUG
     optionsBuilder.LogTo(Console.WriteLine);
 #endif

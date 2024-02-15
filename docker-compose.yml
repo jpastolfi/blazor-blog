@@ -8,13 +8,11 @@ services:
     build: ./src
     ports:
       - 8080:8080
-    volumes:
-      - ./src:/app-dev
-    environment:
-      - DB_HOST=db
-      - DB_PORT=1433
-      - DB_USER=sa
-      - DB_PASSWORD=Blazing
+    # environment:
+      # - DB_HOST=db
+      # - DB_PORT=1433
+      # - DB_USER=sa
+      # - DB_PASSWORD=BlazingBlog1234!
     restart: 'always'
     depends_on:
       - db
@@ -26,6 +24,6 @@ services:
       - 1433:1433
     environment:
       - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=Blazing
+      - MSSQL_SA_PASSWORD=BlazingBlog1234!
       - MSSQL_PID=Developer
     restart: 'always'

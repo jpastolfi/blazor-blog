@@ -12,7 +12,7 @@ using blazor_blog.Data;
 namespace blazor_blog.Migrations
 {
     [DbContext(typeof(BlogContext))]
-    [Migration("20240214183324_InitialCreate")]
+    [Migration("20240215180047_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

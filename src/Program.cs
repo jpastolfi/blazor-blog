@@ -9,8 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
-var connectionString = builder.Configuration.GetConnectionString("Blog");
-builder.Services.AddDbContext<BlogContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddDbContext<BlogContext>();
 
 var app = builder.Build();
 

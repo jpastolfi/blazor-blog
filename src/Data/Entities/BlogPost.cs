@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace blazor_blog.Data.Entities;
 
@@ -21,5 +22,6 @@ public class BlogPost
   public DateTime? ModifiedOn { get; set; }
   public virtual Category Category { get; set; }
   public virtual User User { get; set; }
-
+  [ForeignKey("UserId")]
+  public int UserId { get; set; }
 }

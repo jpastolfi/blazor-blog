@@ -1,0 +1,85 @@
+@page "/login"
+@using blazor_blog.Models;
+
+@inject NavigationManager NavigationManager;
+
+@if (isProcessing)
+{
+  <div class="overlay position-fixed"></div>
+  <div class="loading-wrapper position-fixed d-flex justify-content-center align-items-center">
+  <div class="loading-text fs-1 text-light ">Loggin in</div>
+</div>
+}
+<style type="text/css">
+  .overlay {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 2000;
+  }
+
+  .loading-wrapper {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 2001;
+  }
+</style>
+
+<EditForm Model="login" OnValidSubmit="LoginAsync">
+  <DataAnnotationsValidator />
+  <div class="container mt-5 d-flex justify-content-center">
+    <div class="card" style="width: 600px;">
+      <div class="card-header ">
+        <h2>Login</h2>
+      </div>
+      <div class="card-body ">
+        <div class="mb-3">
+          <label class="form-label">Username</label>
+          <InputText @bind-Value="login.Username" class="form-control" placeholder="Enter your username" />
+          <ValidationMessage For="() => login.Username" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+          <InputText typeof="password" @bind-Value="login.Password" class="form-control"
+            placeholder="Enter your password" />
+          <ValidationMessage For="() => login.Password" />
+        </div>
+        <div class="mb-3">
+          @if (!string.IsNullOrWhiteSpace(error))
+          {
+            <p class="text-danger">@error</p>
+          }
+        </div>
+      </div>
+      <div class="card-footer ">
+        <button type="submit" class="btn btn-success btn-sm">Login</button>
+      </div>
+    </div>
+  </div>
+</EditForm>
+
+@code {
+  private LoginModel login { get; set; } = new();
+  private string error = null;
+  private bool isProcessing = false;
+  private async Task LoginAsync()
+  {
+    isProcessing = true;
+    try
+    {
+      error = null;
+      await Task.Delay(2000);
+      NavigationManager.NavigateTo("/");
+    }
+    catch (Exception ex)
+    {
+      isProcessing = false;
+      error = ex.Message;
+    }
+  }
+}

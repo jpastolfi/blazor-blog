@@ -11,7 +11,7 @@ public class UserService
   {
     _context = context;
   }
-  public async Task LoginAsync(LoginModel model)
+  public async Task<LoggedInUser?> LoginAsync(LoginModel model)
   {
     var dbUser = await _context.Users
                   .AsNoTracking()
@@ -19,10 +19,12 @@ public class UserService
     if (dbUser is not null)
     {
       // Login Success
+      return new LoggedInUser(dbUser.UserId, $"{dbUser.FirstName} {dbUser.LastName}".Trim());
     }
     else
     {
       // Login fail
+      return null;
     }
   }
 }

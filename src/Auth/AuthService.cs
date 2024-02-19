@@ -40,7 +40,6 @@ public class AuthService
     }
     catch (InvalidOperationException)
     {
-      throw;
     }
     return null;
   }

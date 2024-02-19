@@ -14,7 +14,7 @@ public class AuthService
     _userService = userService;
     _protectedLocalStorage = protectedLocalStorage;
   }
-  public async Task<LoggedInUser?> GetUserAsync(LoginModel model)
+  public async Task<LoggedInUser?> LoginUserAsync(LoginModel model)
   {
     var loggedInUser = await _userService.LoginAsync(model);
     if (loggedInUser is not null)

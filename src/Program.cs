@@ -1,4 +1,3 @@
-using blazor_blog.Auth;
 using Microsoft.AspNetCore.Components.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);

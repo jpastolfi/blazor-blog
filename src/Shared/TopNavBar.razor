@@ -16,7 +16,16 @@
       </li>
     </ul>
     <div class="text-end ">
-      <NavLink class="btn btn-primary">Login</NavLink>
+      <AuthorizeView>
+        <Authorizing>Checking auth state</Authorizing>
+        <Authorized>
+          <NavLink href="javascript:void()" class="btn btn-light disabled ">@context.User?.Identity?.Name</NavLink>
+          <button type="button" class="btn btn-primary">Logout</button>
+        </Authorized>
+        <NotAuthorized>
+          <NavLink class="btn btn-primary">Login</NavLink>
+        </NotAuthorized>
+      </AuthorizeView>
     </div>
   </header>
 </div>

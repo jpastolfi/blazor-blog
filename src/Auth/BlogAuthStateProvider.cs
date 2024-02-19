@@ -7,6 +7,7 @@ public class BlogAuthStateProvider : AuthenticationStateProvider, IDisposable
 {
   private const string BlogAuthType = "blog_auth";
   private readonly AuthService _authService;
+  public LoggedInUser LoggedInUser { get; private set; } = new(0, string.Empty);
   public BlogAuthStateProvider(AuthService authService)
   {
     _authService = authService;
@@ -22,7 +23,6 @@ public class BlogAuthStateProvider : AuthenticationStateProvider, IDisposable
       LoggedInUser = new LoggedInUser(userId, displayName!);
     }
   }
-  public LoggedInUser LoggedInUser { get; private set; } = new(0, string.Empty);
   public override async Task<AuthenticationState> GetAuthenticationStateAsync()
   {
     var claimsPrincipal = new ClaimsPrincipal();
@@ -40,4 +40,13 @@ public class BlogAuthStateProvider : AuthenticationStateProvider, IDisposable
     return new AuthenticationState(claimsPrincipal);
   }
   public void Dispose() => AuthenticationStateChanged -= BlogAuthStateProvider_AuthenticationStateChanged;
+  public async Task<string?> LoginAsync(LoginModel model)
+  {
+    var loggedInUser = await _authService.LoginUserAsync(model);
+    if (loggedInUser is null)
+    {
+      return "Invalid credentials";
+    }
+    return null;
+  }
 }

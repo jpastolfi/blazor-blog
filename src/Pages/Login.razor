@@ -1,6 +1,6 @@
 @page "/login"
-@using blazor_blog.Models;
 
+@inject BlogAuthStateProvider BlogAuthStateProvider;
 @inject NavigationManager NavigationManager;
 
 @if (isProcessing)
@@ -72,9 +72,24 @@
     isProcessing = true;
     try
     {
-      error = null;
-      await Task.Delay(2000);
-      NavigationManager.NavigateTo("/");
+      var error = await BlogAuthStateProvider.LoginAsync(login);
+      if (String.IsNullOrWhiteSpace(error))
+      {
+        isProcessing = false;
+      }
+      else
+      {
+        var loggedInUser = BlogAuthStateProvider.LoggedInUser;
+        if (loggedInUser.IsEmpty)
+        {
+          error = "Could not login. Please try again";
+          isProcessing = false;
+        }
+        else
+        {
+          NavigationManager.NavigateTo("/");
+        }
+      }
     }
     catch (Exception ex)
     {

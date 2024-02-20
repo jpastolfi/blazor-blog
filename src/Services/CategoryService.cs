@@ -18,6 +18,7 @@ public class CategoryService(BlogContext context) : ICategoryService
       }
       else
       {
+        model.Slug = model.Slug.Slugify();
         await _context.Categories.AddAsync(model);
       }
     }

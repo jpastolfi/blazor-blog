@@ -26,10 +26,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9BZG1pbi9OZXdDYXRlZ29yeUZvcm0ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/jpastolfi/blazor-blog/src/Components/Admin/Teste.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9BZG1pbi9UZXN0ZS5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
 [/Users/jpastolfi/blazor-blog/src/Pages/Admin/ManageBlogs.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vTWFuYWdlQmxvZ3MucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

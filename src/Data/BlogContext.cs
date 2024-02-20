@@ -17,7 +17,6 @@ public class BlogContext : DbContext
       var connectionString = "Server=localhost;Database=blazor-blog;User=SA;Password=BlazingBlog1234!;TrustServerCertificate=True";
       optionsBuilder.UseSqlServer(connectionString);
     }
-    /* base.OnConfiguring(optionsBuilder); */
 #if DEBUG
     optionsBuilder.LogTo(Console.WriteLine);
 #endif
@@ -37,5 +36,18 @@ public class BlogContext : DbContext
           Hash = "Banana"
         }
       );
+    /* modelBuilder.Entity<Category>()
+      .HasData(
+        new Category { },
+        new Category { },
+        new Category { },
+        new Category { },
+        new Category { },
+        new Category { },
+        new Category { },
+        new Category { },
+        new Category { },
+        new Category { }
+      ); */
   }
 }

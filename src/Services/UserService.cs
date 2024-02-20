@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace blazor_blog.Services;
 
-public class UserService
+public class UserService : IUserService
 {
   private readonly BlogContext _context;
   public UserService(BlogContext context)

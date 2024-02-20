@@ -1,0 +1,94 @@
+@page "/admin/manage-categories"
+@inject IJSRuntime IJSRuntime;
+@inject CategoryService CategoryService;
+
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center">
+    <h3>Manage Categories</h3>
+    <button class="btn btn-primary btn-sm">Add new category</button>
+  </div>
+  <hr />
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Slug</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (isLoading)
+      {
+        <tr>
+          <td colspan="4">
+            Loading categories
+          </td>
+        </tr>
+      }
+      else if (!isLoading && (categories is null || !categories.Any()))
+      {
+        <tr>
+          <td colspan="4">
+            No categories found
+          </td>
+        </tr>
+      }
+      else
+      {
+        int sno = 1;
+        foreach (var category in categories)
+        {
+          <tr>
+            <td>@(sno++)</td>
+            <td>@category.Id</td>
+            <td>@category.Name</td>
+            <td>@category.Slug</td>
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+  <dialog open>
+    <NewCategoryForm OnSaveCategory="OnSaveCategory" />
+  </dialog>
+  <style type="text/css">
+    dialog {
+      padding: 0;
+      border: 2px solid var(--main-color);
+    }
+  </style>
+</div>
+
+@code
+{
+  private bool isLoading = false;
+  private IEnumerable<Category>? categories = null;
+  protected override async Task OnInitializedAsync()
+  {
+    isLoading = true;
+    try
+    {
+      categories = await CategoryService.GetCategories();
+    }
+    finally
+    {
+      isLoading = false;
+    }
+  }
+  private async Task OnSaveCategory(CreatedCategory saveCategoryResult)
+  {
+    if (saveCategoryResult.Status)
+    {
+      await AlertAsync("Category saved");
+    }
+    else
+    {
+      await AlertAsync(saveCategoryResult.ErrorMessage!);
+    }
+  }
+  private async Task AlertAsync(string message)
+  {
+    await IJSRuntime.InvokeVoidAsync("window.alert", message);
+  }
+}

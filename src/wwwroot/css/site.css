@@ -70,3 +70,7 @@ a, .btn-link {
 :root{
     --main-color: #3a9119;
 }
+
+.bg-main-color {
+    background-color: var(--main-color);
+}

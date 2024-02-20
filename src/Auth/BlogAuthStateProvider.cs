@@ -29,13 +29,7 @@ public class BlogAuthStateProvider : AuthenticationStateProvider, IDisposable
     var user = await _authService.GetUserFromStorage();
     if (user is not null)
     {
-      var identity = new ClaimsIdentity(
-        new[]
-        {
-          new Claim(ClaimTypes.NameIdentifier, user.Value.UserId.ToString()),
-          new Claim(ClaimTypes.NameIdentifier, user.Value.DisplayName)
-        }, BlogAuthType);
-      claimsPrincipal = new(identity);
+      claimsPrincipal = GetClaimsPrincipalFromUser(user.Value);
     }
     return new AuthenticationState(claimsPrincipal);
   }
@@ -47,6 +41,24 @@ public class BlogAuthStateProvider : AuthenticationStateProvider, IDisposable
     {
       return "Invalid credentials";
     }
+    var authState = new AuthenticationState(GetClaimsPrincipalFromUser(loggedInUser.Value));
+    NotifyAuthenticationStateChanged(Task.FromResult(authState));
     return null;
+  }
+  public async Task LogoutAsync()
+  {
+    await _authService.RemoveUserFromStorage();
+    var authState = new AuthenticationState(new ClaimsPrincipal());
+    NotifyAuthenticationStateChanged(Task.FromResult(authState));
+  }
+  private static ClaimsPrincipal GetClaimsPrincipalFromUser(LoggedInUser user)
+  {
+    var identity = new ClaimsIdentity(
+            new[]
+            {
+          new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
+          new Claim(ClaimTypes.NameIdentifier, user.DisplayName)
+            }, BlogAuthType);
+    return new ClaimsPrincipal(identity);
   }
 }

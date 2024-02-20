@@ -45,7 +45,7 @@
         </div>
         <div class="mb-3">
           <label class="form-label">Password</label>
-          <InputText typeof="password" @bind-Value="login.Password" class="form-control"
+          <InputText type="password" @bind-Value="login.Password" class="form-control"
             placeholder="Enter your password" />
           <ValidationMessage For="() => login.Password" />
         </div>
@@ -65,15 +65,16 @@
 
 @code {
   private LoginModel login { get; set; } = new();
-  private string error = null;
   private bool isProcessing = false;
+  private string error = null;
   private async Task LoginAsync()
   {
     isProcessing = true;
+    error = null;
     try
     {
-      var error = await BlogAuthStateProvider.LoginAsync(login);
-      if (String.IsNullOrWhiteSpace(error))
+      error = await BlogAuthStateProvider.LoginAsync(login);
+      if (!string.IsNullOrWhiteSpace(error))
       {
         isProcessing = false;
       }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "aSPOy8mj8L/OP93UWKHuoiyRM4KToSR306UqtWxL4eA=",
+  "Hash": "LS3YfYs1L3oTLdpfEkgj6k6oz6obwqz+/FZ0B6f8bh4=",
   "Source": "blazor-blog",
   "BasePath": "_content/blazor-blog",
   "Mode": "Default",
@@ -300,6 +300,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/favicon.png"
+    },
+    {
+      "Identity": "/Users/jpastolfi/blazor-blog/src/wwwroot/js/common.js",
+      "SourceId": "blazor-blog",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/jpastolfi/blazor-blog/src/wwwroot/",
+      "BasePath": "_content/blazor-blog",
+      "RelativePath": "js/common.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/common.js"
     }
   ]
 }

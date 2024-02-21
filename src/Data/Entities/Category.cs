@@ -11,4 +11,5 @@ public class Category
   public string? Name { get; set; }
   [Required, MaxLength(125)]
   public string? Slug { get; set; }
+  public Category Clone() => (Category)this.MemberwiseClone();
 }

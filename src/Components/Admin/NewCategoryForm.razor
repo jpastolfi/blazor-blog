@@ -6,9 +6,9 @@
     <div class="card-header bg-main-color text-white d-flex justify-content-between align-items-center" style="
       min-width: 300px">
       <h4>
-        Save Category
+        @(categoryModel.Id == 0 ? "Save" : "Edit") Category
       </h4>
-      <button type="button" class="btn btn-sm btn-danger">X</button>
+      <button type="button" class="btn btn-sm btn-danger" @onclick="CloseForm">X</button>
     </div>
     <div class="card-body">
       <div class="mb-3">
@@ -19,12 +19,13 @@
       </div>
       <div class="mb-3">
         <label class="form-label">Slug: </label>
-        <InputText @bind-Value="categoryModel.Slug" class="form-control" placeholder="Category slug" />
+        <InputText @bind-Value="categoryModel.Slug" class="form-control" placeholder="Category slug"
+          disabled="@(categoryModel.Id > 0)" />
         <ValidationMessage For="() => categoryModel.Slug" />
       </div>
     </div>
     <div class="card-footer d-flex justify-content-between align-items-center">
-      <button type="button" class="btn btn-default">Cancel</button>
+      <button type="button" class="btn btn-default" @onclick="CloseForm">Cancel</button>
       <button type="submit" class="btn btn-default">Save</button>
     </div>
   </div>
@@ -32,10 +33,16 @@
 
 @code {
   [Parameter]
+  public EventCallback OnCloseForm { get; set; }
+  [Parameter]
   public Category Category { get; set; }
   [Parameter]
   public EventCallback<CreatedCategory> OnSaveCategory { get; set; }
   private Category categoryModel = new();
+  protected override void OnParametersSet()
+  {
+    categoryModel = Category;
+  }
   private async Task SaveCategory()
   {
     CreatedCategory result = await CategoryService.SaveCategory(categoryModel);
@@ -45,12 +52,17 @@
     }
     await OnSaveCategory.InvokeAsync(result);
   }
-
   private void OnNameBlur()
   {
-    if (!string.IsNullOrWhiteSpace(categoryModel.Name))
+
+    if (categoryModel.Id == 0 && !string.IsNullOrWhiteSpace(categoryModel.Name))
     {
       categoryModel.Slug = categoryModel.Name.Slugify();
     }
+  }
+  private async Task CloseForm()
+  {
+    categoryModel = new();
+    await OnCloseForm.InvokeAsync();
   }
 }

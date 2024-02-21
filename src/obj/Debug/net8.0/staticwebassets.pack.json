@@ -57,6 +57,10 @@
       "PackagePath": "staticwebassets/favicon.png"
     },
     {
+      "Id": "/Users/jpastolfi/blazor-blog/src/wwwroot/js/common.js",
+      "PackagePath": "staticwebassets/js/common.js"
+    },
+    {
       "Id": "obj/Debug/net8.0/staticwebassets/msbuild.blazor-blog.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

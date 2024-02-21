@@ -1,11 +1,11 @@
 @page "/admin/manage-categories"
-@inject IJSRuntime IJSRuntime;
+@inject IJSRuntime Js;
 @inject CategoryService CategoryService;
 
 <div class="container">
   <div class="d-flex justify-content-between align-items-center">
     <h3>Manage Categories</h3>
-    <button class="btn btn-primary btn-sm">Add new category</button>
+    <button class="btn btn-primary btn-sm" @onclick="OpenCategoryForm">Add category</button>
   </div>
   <hr />
   <table class="table">
@@ -44,13 +44,16 @@
             <td>@category.Id</td>
             <td>@category.Name</td>
             <td>@category.Slug</td>
+            <td>
+              <button type="button" class="btn btn-default btn-sm" @onclick="() => EditCategory(category)">Edit</button>
+            </td>
           </tr>
         }
       }
     </tbody>
   </table>
-  <dialog open>
-    <NewCategoryForm OnSaveCategory="OnSaveCategory" />
+  <dialog id="@categoryFormDialogId">
+    <NewCategoryForm OnSaveCategory="OnSaveCategory" OnCloseForm="CloseCategoryForm" Category="categoryModel" />
   </dialog>
   <style type="text/css">
     dialog {
@@ -62,9 +65,15 @@
 
 @code
 {
+  private Category categoryModel = new();
+  private const string categoryFormDialogId = "category-form";
   private bool isLoading = false;
   private IEnumerable<Category>? categories = null;
   protected override async Task OnInitializedAsync()
+  {
+    await LoadCategories();
+  }
+  private async Task LoadCategories()
   {
     isLoading = true;
     try
@@ -81,6 +90,8 @@
     if (saveCategoryResult.Status)
     {
       await AlertAsync("Category saved");
+      await LoadCategories();
+      await CloseCategoryForm();
     }
     else
     {
@@ -89,6 +100,17 @@
   }
   private async Task AlertAsync(string message)
   {
-    await IJSRuntime.InvokeVoidAsync("window.alert", message);
+    await Js.InvokeVoidAsync("window.alert", message);
+  }
+  private async Task OpenCategoryForm() => await Js.InvokeVoidAsync("window.openModal", categoryFormDialogId);
+  private async Task CloseCategoryForm()
+  {
+    categoryModel = new();
+    await Js.InvokeVoidAsync("window.closeModal", categoryFormDialogId);
+  }
+  private async Task EditCategory(Category category)
+  {
+    categoryModel = category.Clone();
+    OpenCategoryForm();
   }
 }

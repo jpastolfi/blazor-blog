@@ -135,3 +135,4 @@
 /Users/jpastolfi/blazor-blog/src/obj/Debug/net8.0/blazor-blog.pdb
 /Users/jpastolfi/blazor-blog/src/obj/Debug/net8.0/blazor-blog.genruntimeconfig.cache
 /Users/jpastolfi/blazor-blog/src/obj/Debug/net8.0/ref/blazor-blog.dll
+/Users/jpastolfi/blazor-blog/src/bin/Debug/net8.0/Blazored.TextEditor.dll

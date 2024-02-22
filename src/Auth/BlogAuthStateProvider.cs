@@ -31,7 +31,9 @@ public class BlogAuthStateProvider : AuthenticationStateProvider, IDisposable
     {
       claimsPrincipal = GetClaimsPrincipalFromUser(user.Value);
     }
-    return new AuthenticationState(claimsPrincipal);
+    var authState = new AuthenticationState(claimsPrincipal);
+    NotifyAuthenticationStateChanged(Task.FromResult(authState));
+    return authState;
   }
   public void Dispose() => AuthenticationStateChanged -= BlogAuthStateProvider_AuthenticationStateChanged;
   public async Task<string?> LoginAsync(LoginModel model)

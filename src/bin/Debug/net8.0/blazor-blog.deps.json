@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v8.0": {
       "blazor-blog/1.0.0": {
         "dependencies": {
+          "Blazored.TextEditor": "1.1.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.2",
           "Microsoft.EntityFrameworkCore.Tools": "8.0.2"
         },
@@ -49,6 +50,18 @@
           }
         }
       },
+      "Blazored.TextEditor/1.1.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "3.1.0",
+          "Microsoft.AspNetCore.Components.Web": "3.1.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Blazored.TextEditor.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Humanizer.Core/2.14.1": {
         "runtime": {
           "lib/net6.0/Humanizer.dll": {
@@ -57,6 +70,35 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Authorization/3.1.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Metadata": "3.1.0",
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.0",
+          "Microsoft.Extensions.Options": "8.0.0"
+        }
+      },
+      "Microsoft.AspNetCore.Components/3.1.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Authorization": "3.1.0",
+          "Microsoft.AspNetCore.Components.Analyzers": "3.1.0",
+          "Microsoft.JSInterop": "3.1.0"
+        }
+      },
+      "Microsoft.AspNetCore.Components.Analyzers/3.1.0": {},
+      "Microsoft.AspNetCore.Components.Forms/3.1.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "3.1.0"
+        }
+      },
+      "Microsoft.AspNetCore.Components.Web/3.1.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "3.1.0",
+          "Microsoft.AspNetCore.Components.Forms": "3.1.0",
+          "Microsoft.Extensions.DependencyInjection": "8.0.0",
+          "Microsoft.JSInterop": "3.1.0"
+        }
+      },
+      "Microsoft.AspNetCore.Metadata/3.1.0": {},
       "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
         "runtime": {
           "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll": {
@@ -564,6 +606,7 @@
           }
         }
       },
+      "Microsoft.JSInterop/3.1.0": {},
       "Microsoft.NETCore.Platforms/1.1.0": {},
       "Microsoft.NETCore.Targets/1.1.0": {},
       "Microsoft.SqlServer.Server/1.0.0": {
@@ -877,12 +920,61 @@
       "path": "azure.identity/1.10.3",
       "hashPath": "azure.identity.1.10.3.nupkg.sha512"
     },
+    "Blazored.TextEditor/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-f2aC1vQlYCYmRXkXr66XF9B8i/QpODtbq7GR1AWmRVcY1NR7HgN7jvgPOObzfu6r8IDod6B3YDkH+KSEh+QiUg==",
+      "path": "blazored.texteditor/1.1.0",
+      "hashPath": "blazored.texteditor.1.1.0.nupkg.sha512"
+    },
     "Humanizer.Core/2.14.1": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "path": "humanizer.core/2.14.1",
       "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Authorization/3.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-R/0qFIu1m7jJFD0OuLIjLXC0uYQxFwwW7ylVvGgUPUpOJJK0bKJjfrDu20kY1Yw0hy9ejZYZEdUZHRm3ei0+3w==",
+      "path": "microsoft.aspnetcore.authorization/3.1.0",
+      "hashPath": "microsoft.aspnetcore.authorization.3.1.0.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Components/3.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-YIcE9FGLLMt8vnjaQEf6PhI4ikxibEv6t06SQTb9BAd//UxrOklqDhCzWldF6zXxh3+VnyVGFNOOlz9Tg8vQ8A==",
+      "path": "microsoft.aspnetcore.components/3.1.0",
+      "hashPath": "microsoft.aspnetcore.components.3.1.0.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Components.Analyzers/3.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DWvG559bbeNMkesZ/sYZqEH9iTx4N7WbdyChf2PS7ouZBcWjRSt/V+sKuofrTpb0c8STe14+U3kMKO5FtwaT/g==",
+      "path": "microsoft.aspnetcore.components.analyzers/3.1.0",
+      "hashPath": "microsoft.aspnetcore.components.analyzers.3.1.0.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Components.Forms/3.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-BkW3QVWzpTlqJWbBasahUCrebUQraIZKYS3sK1nTQOw1xNFjfBmmiLipT/9jinnQh3ogatAtfhPxNr6DMrheQg==",
+      "path": "microsoft.aspnetcore.components.forms/3.1.0",
+      "hashPath": "microsoft.aspnetcore.components.forms.3.1.0.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Components.Web/3.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wuoKzEIt/4nGU5Adohw93oVM/i2Bszcumm4RQ4XY8ruZCqtq0LmeTE1y1bqRtiRjNgvaUe6cH/ogh2pZ1LQovA==",
+      "path": "microsoft.aspnetcore.components.web/3.1.0",
+      "hashPath": "microsoft.aspnetcore.components.web.3.1.0.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Metadata/3.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZiNCjglz4kR2OGElM2u/S6cS1ArAxE6lP4BeniCZcr6l+ACzslKgcPGOTY8/Glppx6CDzMKfmyqV+VbFh5CyjQ==",
+      "path": "microsoft.aspnetcore.metadata/3.1.0",
+      "hashPath": "microsoft.aspnetcore.metadata.3.1.0.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
       "type": "package",
@@ -1121,6 +1213,13 @@
       "sha512": "sha512-ZPqHi86UYuqJXJ7bLnlEctHKkPKT4lGUFbotoCNiXNCSL02emYlcxzGYsRGWWmbFEcYDMi2dcTLLYNzHqWOTsw==",
       "path": "microsoft.identitymodel.tokens/6.24.0",
       "hashPath": "microsoft.identitymodel.tokens.6.24.0.nupkg.sha512"
+    },
+    "Microsoft.JSInterop/3.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-A6w985fb6RyL4x69TILW3sF2DcAufUPDOwN1LpdRZ3sZcpvb2ZnM2TrarleDhtqfS5g0Ot+2AG5AM9svH9Cm8Q==",
+      "path": "microsoft.jsinterop/3.1.0",
+      "hashPath": "microsoft.jsinterop.3.1.0.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
       "type": "package",

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "LS3YfYs1L3oTLdpfEkgj6k6oz6obwqz+/FZ0B6f8bh4=",
+  "Hash": "JQcvfJkB7CLhPM5NW4ulLr6PIpEL2soWMneHaI+r494=",
   "Source": "blazor-blog",
   "BasePath": "_content/blazor-blog",
   "Mode": "Default",
@@ -16,6 +16,44 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "/Users/jpastolfi/.nuget/packages/blazored.texteditor/1.1.0/staticwebassets/Blazored-BlazorQuill.js",
+      "SourceId": "Blazored.TextEditor",
+      "SourceType": "Package",
+      "ContentRoot": "/Users/jpastolfi/.nuget/packages/blazored.texteditor/1.1.0/staticwebassets/",
+      "BasePath": "_content/Blazored.TextEditor",
+      "RelativePath": "Blazored-BlazorQuill.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/jpastolfi/.nuget/packages/blazored.texteditor/1.1.0/staticwebassets/Blazored-BlazorQuill.js"
+    },
+    {
+      "Identity": "/Users/jpastolfi/.nuget/packages/blazored.texteditor/1.1.0/staticwebassets/quill-blot-formatter.min.js",
+      "SourceId": "Blazored.TextEditor",
+      "SourceType": "Package",
+      "ContentRoot": "/Users/jpastolfi/.nuget/packages/blazored.texteditor/1.1.0/staticwebassets/",
+      "BasePath": "_content/Blazored.TextEditor",
+      "RelativePath": "quill-blot-formatter.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/jpastolfi/.nuget/packages/blazored.texteditor/1.1.0/staticwebassets/quill-blot-formatter.min.js"
+    },
     {
       "Identity": "/Users/jpastolfi/blazor-blog/src/obj/Debug/net8.0/scopedcss/bundle/blazor-blog.styles.css",
       "SourceId": "blazor-blog",

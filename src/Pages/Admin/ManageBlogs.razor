@@ -1,7 +1,94 @@
 @page "/admin/manage-blogs"
-<h3>Manage blogs</h3>
+@inject BlogPostService BlogPostService;
 
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center">
+    <h3>Manage Blog Posts</h3>
+    <NavLink href="admin/manage-blogs/new" class="btn btn-primary btn-sm">Create Blog Post</NavLink>
+  </div>
+</div>
+<hr />
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Id</th>
+      <th>Title</th>
+      <th>Category</th>
+      <th>Created/Modified</th>
+      <th>Published</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @if (@isLoading)
+    {
+      <tr>
+        <td colspan="7" class="text-center">Loading blog posts</td>
+      </tr>
+    }
+    else if (!isLoading && (posts is null || !posts.Any()))
+    {
+      <tr>
+        <td colspan="7" class="text-center">
+          <h3 class="mb-3">No posts found</h3>
+          <NavLink href="admin/manage-blogs/new">Create Blog Post</NavLink>
+        </td>
+      </tr>
+    }
+    else
+    {
+      int sno = 1;
+      @foreach (var post in posts)
+      {
+        var editPostLink = $"/admin/manage-blogs/edit/{post.Id}";
+        <tr>
+          <td>@(sno++)</td>
+          <td>@post.Id</td>
+          <td>@post.Title</td>
+          <td>@post.CategoryName</td>
+          <td>
+            @(post.ModifiedOn.HasValue
+                ? post.ModifiedOn.Value.ToString()
+                : post.CreatedOn.ToShortDateString()
+                )
+          </td>
+          <td>
+            @if (post.PublishedOn.HasValue)
+            {
+              <span class="text-success">Published</span>
+            }
+            else
+            {
+              <span class="text-danger">Not Published</span>
+            }
+          </td>
+          <td>
+            <NavLink href=@editPostLink class="btn btn-primary btn-sm">Edit Blog Post</NavLink>
+          </td>
+        </tr>
+      }
+    }
+  </tbody>
+</table>
 @code
 {
-
+  private bool isLoading = false;
+  private IEnumerable<BlogPost> posts = null;
+  protected override void OnInitialized()
+  {
+    base.OnInitialized();
+  }
+  private async Task LoadPosts()
+  {
+    isLoading = true;
+    try
+    {
+      posts = await BlogPostService.GetPosts();
+    }
+    finally
+    {
+      isLoading = false;
+    }
+  }
 }

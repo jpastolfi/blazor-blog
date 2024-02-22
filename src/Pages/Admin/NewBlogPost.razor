@@ -1,0 +1,71 @@
+@page "/admin/manage-blogs/new"
+@page "/admin/manage-blogs/edit/{urlBlogId:int?}"
+@inject CategoryService CategoryService;
+
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center">
+    <h3>Save blog post</h3>
+    <NavLink href="/admin/manage-blogs" class="btn btn-primary btn-sm">Back to blog post list</NavLink>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <EditForm Model="model">
+        <DataAnnotationsValidator />
+        <div class="mb-3">
+          <label class="form-label ">Title: </label>
+          <InputText @bind-Value="model.Title" class="form-control" placeholder="Enter title" />
+          <ValidationMessage For="() => model.Title" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label ">Slug: </label>
+          <InputText @bind-Value="model.Slug" class="form-control" placeholder="Enter slug" />
+          <ValidationMessage For="() => model.Slug" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label ">Category: </label>
+          <InputSelect @bind-Value="model.CategoryId" class="form-control">
+            <option value="">Select category: </option>
+            @foreach (var category in categories)
+            {
+              <option value="@category.Id">@category.Name</option>
+            }
+          </InputSelect>
+        </div>
+        <div class="mb-3">
+          <label class="form-label ">Introduction: </label>
+          <InputTextArea @bind-Value="model.Introduction" class="form-control" placeholder="Enter introduction" />
+          <ValidationMessage For="() => model.Introduction" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label ">Content: </label>
+          <InputText @bind-Value="model.Content" class="form-control" placeholder="Enter content" />
+          <ValidationMessage For="() => model.Content" />
+        </div>
+        <div class="mb-3">
+          <div class="form-check form-switch ">
+            <InputCheckbox id="blog-publish-xbox" @bind-Value="model.IsPublished" class="form-check-input"
+              role="switch" />
+            <label class="form-check-label" for="blog-publish-xbox">Published?</label>
+          </div>
+        </div>
+        <hr>
+        <div class="mb-3 d-flex justify-content-between">
+          <button type="reset" class="btn btn-danger">Cancel</button>
+          <button type="submit" class="btn btn-success">Save</button>
+        </div>
+        <hr>
+      </EditForm>
+    </div>
+  </div>
+</div>
+
+@code {
+  [Parameter]
+  public int? UrlBlogId { get; set; }
+  private int BlogId => UrlBlogId ?? 0;
+  private BlogPost model = new();
+  private IEnumerable<Category> categories = Enumerable.Empty<Category>();
+  protected override async Task OnInitializedAsync() => categories = await CategoryService.GetCategories() ?? new
+  List<Category>();
+
+}

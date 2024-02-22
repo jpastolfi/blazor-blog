@@ -16,7 +16,7 @@ public class BlogPost
   public string? Introduction { get; set; }
   [Required]
   public string? Content { get; set; }
-  public DateTime? CreatedOn { get; set; }
+  public DateTime CreatedOn { get; set; }
   public bool IsPublished { get; set; }
   public DateTime? PublishedOn { get; set; }
   public DateTime? ModifiedOn { get; set; }
@@ -24,4 +24,6 @@ public class BlogPost
   public virtual User User { get; set; }
   [ForeignKey("UserId")]
   public int UserId { get; set; }
+  [NotMapped]
+  public string CategoryName => Category.Name;
 }

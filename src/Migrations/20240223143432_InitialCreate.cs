@@ -79,7 +79,7 @@ namespace blazor_blog.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserId", "Email", "FirstName", "Hash", "LastName", "Salt" },
-                values: new object[] { 1, "visitor@blog.com", "You are", "Banana", "Hired", "text" });
+                values: new object[] { 1, "visitor@blog.com", "Tech", "Banana", "Lead", "text" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_BlogPosts_CategoryId",

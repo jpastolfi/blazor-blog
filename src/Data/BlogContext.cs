@@ -18,7 +18,8 @@ public class BlogContext : DbContext
       var server = Environment.GetEnvironmentVariable("DBSERVER") ?? "localhost";
       var password = Environment.GetEnvironmentVariable("DBPASSWORD");
       var database = Environment.GetEnvironmentVariable("DBHOST");
-      var connectionString = $"Server={server};Database={database};User=SA;Password={password};TrustServerCertificate=True";
+      /* var connectionString = $"Server={server};Database={database};User=SA;Password={password};TrustServerCertificate=True"; */
+      var connectionString = $"Server={server};Database=blazor_blog;User=SA;Password=BlazingBlog1234!;TrustServerCertificate=True";
       optionsBuilder.UseSqlServer(connectionString);
     }
 #if DEBUG

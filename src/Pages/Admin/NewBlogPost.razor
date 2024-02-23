@@ -102,9 +102,8 @@
           {
             <p class="text-danger">@errorMessage</p>
           }
-          <p>O id do usuário é @BlogAuthStateProvider.LoggedInUser.UserId</p>
           <div class="mb-3 d-flex justify-content-between">
-            <button type="reset" class="btn btn-danger">Cancel</button>
+            <NavLink href="/admin/manage-blogs" type="reset" class="btn btn-danger">Cancel</NavLink>
             <button type="submit" class="btn btn-success">Save</button>
           </div>
           <hr>
@@ -124,8 +123,24 @@
   private IEnumerable<Category> categories = Enumerable.Empty<Category>();
   private BlazoredTextEditor QuillHtml;
 
-  protected override async Task OnInitializedAsync() => categories = await CategoryService.GetCategories() ?? new
-  List<Category>();
+  protected override async Task OnInitializedAsync()
+  {
+    categories = await CategoryService.GetCategories() ?? new List<Category>();
+    if (BlogId > 0)
+    {
+      //Edit mode
+      var dbModel = await BlogPostService.GetPost(BlogId);
+      if (dbModel is null)
+      {
+        errorMessage = "Invalid URL";
+      }
+      else
+      {
+        model = dbModel;
+      }
+    }
+  }
+
   private async Task SaveBlogPostOnSubmit()
   {
     model.Content = await QuillHtml.GetHTML();

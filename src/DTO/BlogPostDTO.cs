@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
 
 namespace blazor_blog.DTO;
 
@@ -26,5 +27,24 @@ public class BlogPostDTO
       IsPublished = IsPublished,
       UserId = userId
     };
+  public BlogPost Merge(BlogPost entity)
+  {
+    entity.Title = Title;
+    entity.CategoryId = CategoryId;
+    entity.Introduction = Introduction;
+    entity.Content = Content!;
+    entity.IsPublished = IsPublished;
+    return entity;
+  }
+  public static Expression<Func<BlogPost, BlogPostDTO>> Selector => bp => new BlogPostDTO
+  {
+    Id = bp.Id,
+    Title = bp.Title,
+    Slug = bp.Slug,
+    CategoryId = bp.CategoryId,
+    Introduction = bp.Introduction,
+    Content = bp.Content!,
+    IsPublished = bp.IsPublished,
+  };
 }
 

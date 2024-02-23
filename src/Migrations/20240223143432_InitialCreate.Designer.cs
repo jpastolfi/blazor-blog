@@ -12,7 +12,7 @@ using blazor_blog.Data;
 namespace blazor_blog.Migrations
 {
     [DbContext(typeof(BlogContext))]
-    [Migration("20240223004654_InitialCreate")]
+    [Migration("20240223143432_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -143,9 +143,9 @@ namespace blazor_blog.Migrations
                         {
                             UserId = 1,
                             Email = "visitor@blog.com",
-                            FirstName = "You are",
+                            FirstName = "Tech",
                             Hash = "Banana",
-                            LastName = "Hired",
+                            LastName = "Lead",
                             Salt = "text"
                         });
                 });

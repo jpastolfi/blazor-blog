@@ -140,9 +140,9 @@ namespace blazor_blog.Migrations
                         {
                             UserId = 1,
                             Email = "visitor@blog.com",
-                            FirstName = "You are",
+                            FirstName = "Tech",
                             Hash = "Banana",
-                            LastName = "Hired",
+                            LastName = "Lead",
                             Salt = "text"
                         });
                 });

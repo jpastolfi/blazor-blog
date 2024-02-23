@@ -74,10 +74,10 @@
 @code
 {
   private bool isLoading = false;
-  private IEnumerable<BlogPost> posts = null;
-  protected override void OnInitialized()
+  private IEnumerable<BlogPost>? posts = null;
+  protected override async Task OnInitializedAsync()
   {
-    base.OnInitialized();
+    await LoadPosts();
   }
   private async Task LoadPosts()
   {

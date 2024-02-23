@@ -12,7 +12,7 @@ using blazor_blog.Data;
 namespace blazor_blog.Migrations
 {
     [DbContext(typeof(BlogContext))]
-    [Migration("20240215180047_InitialCreate")]
+    [Migration("20240223004654_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -40,7 +40,7 @@ namespace blazor_blog.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("CreatedOn")
+                    b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Introduction")

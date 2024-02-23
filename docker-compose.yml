@@ -1,6 +1,3 @@
-# Esse docker-compose é usado para rodar um container SQL Server como seu banco de dados.
-# Para usá-lo, execute no terminal: docker-compose up -d --build
-
 version: '3'
 services:
   backend:
@@ -8,11 +5,12 @@ services:
     build: ./src
     ports:
       - 8080:8080
-    # environment:
-      # - DB_HOST=db
+    environment:
+      - DBHOST=blazor-blog
+      - DBSERVER=db
       # - DB_PORT=1433
       # - DB_USER=sa
-      # - DB_PASSWORD=BlazingBlog1234!
+      - DBPASSWORD=BlazingBlog1234!
     restart: 'always'
     depends_on:
       - db

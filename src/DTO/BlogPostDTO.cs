@@ -6,16 +6,16 @@ public class BlogPostDTO
 {
   public int Id { get; set; }
   [Required, MaxLength(120)]
-  public string? Title { get; set; }
+  public string Title { get; set; }
   [Required, MaxLength(150)]
-  public string? Slug { get; set; }
+  public string Slug { get; set; }
   public int CategoryId { get; set; }
   [Required, MaxLength(300)]
-  public string? Introduction { get; set; }
+  public string Introduction { get; set; }
   public string? Content { get; set; }
   public bool IsPublished { get; set; }
   public BlogPost ToBlogEntity(int userId) =>
-    new BlogPost()
+    new()
     {
       Id = Id,
       Title = Title,
@@ -23,6 +23,8 @@ public class BlogPostDTO
       CategoryId = CategoryId,
       Introduction = Introduction,
       Content = Content,
-      IsPublished = IsPublished
+      IsPublished = IsPublished,
+      UserId = userId
     };
 }
+

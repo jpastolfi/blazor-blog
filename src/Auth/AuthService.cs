@@ -8,7 +8,6 @@ public class AuthService
   private readonly UserService _userService;
   private readonly ProtectedLocalStorage _protectedLocalStorage;
   private const string UserStorageKey = "blog_user";
-  private readonly JsonSerializerOptions _jsonSerializerOptions = new();
   public AuthService(UserService userService, ProtectedLocalStorage protectedLocalStorage)
   {
     _userService = userService;
@@ -23,6 +22,7 @@ public class AuthService
     }
     return loggedInUser;
   }
+  private readonly JsonSerializerOptions _jsonSerializerOptions = new() { };
   public async Task SaveUserToStorage(LoggedInUser user)
   {
     await _protectedLocalStorage.SetAsync(UserStorageKey, JsonSerializer.Serialize(user, _jsonSerializerOptions));

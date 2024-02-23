@@ -7,7 +7,6 @@ public class BlogAuthStateProvider : AuthenticationStateProvider, IDisposable
 {
   private const string BlogAuthType = "blog_auth";
   private readonly AuthService _authService;
-  public LoggedInUser LoggedInUser { get; private set; } = new(0, string.Empty);
   public BlogAuthStateProvider(AuthService authService)
   {
     _authService = authService;
@@ -20,9 +19,10 @@ public class BlogAuthStateProvider : AuthenticationStateProvider, IDisposable
     {
       var userId = Convert.ToInt32(authState.User.FindFirstValue(ClaimTypes.NameIdentifier));
       var displayName = authState.User.FindFirstValue(ClaimTypes.Name);
-      LoggedInUser = new LoggedInUser(userId, displayName!);
+      LoggedInUser = new(userId, displayName!);
     }
   }
+  public LoggedInUser LoggedInUser { get; private set; } = new(0, string.Empty);
   public override async Task<AuthenticationState> GetAuthenticationStateAsync()
   {
     var claimsPrincipal = new ClaimsPrincipal();
@@ -35,7 +35,6 @@ public class BlogAuthStateProvider : AuthenticationStateProvider, IDisposable
     NotifyAuthenticationStateChanged(Task.FromResult(authState));
     return authState;
   }
-  public void Dispose() => AuthenticationStateChanged -= BlogAuthStateProvider_AuthenticationStateChanged;
   public async Task<string?> LoginAsync(LoginModel model)
   {
     var loggedInUser = await _authService.LoginUserAsync(model);
@@ -59,8 +58,9 @@ public class BlogAuthStateProvider : AuthenticationStateProvider, IDisposable
             new[]
             {
           new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
-          new Claim(ClaimTypes.NameIdentifier, user.DisplayName)
+          new Claim(ClaimTypes.Name, user.DisplayName)
             }, BlogAuthType);
     return new ClaimsPrincipal(identity);
   }
+  public void Dispose() => AuthenticationStateChanged -= BlogAuthStateProvider_AuthenticationStateChanged;
 }

@@ -53,7 +53,7 @@ namespace blazor_blog.Migrations
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     Introduction = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsPublished = table.Column<bool>(type: "bit", nullable: false),
                     PublishedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),

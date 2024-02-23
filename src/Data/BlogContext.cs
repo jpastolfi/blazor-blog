@@ -1,4 +1,5 @@
 using blazor_blog.Data.Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace blazor_blog.Data;
@@ -14,7 +15,10 @@ public class BlogContext : DbContext
   {
     if (!optionsBuilder.IsConfigured)
     {
-      var connectionString = "Server=localhost;Database=blazor-blog;User=SA;Password=BlazingBlog1234!;TrustServerCertificate=True";
+      var server = Environment.GetEnvironmentVariable("DBSERVER") ?? "localhost";
+      var password = Environment.GetEnvironmentVariable("DBPASSWORD");
+      var database = Environment.GetEnvironmentVariable("DBHOST");
+      var connectionString = $"Server={server};Database={database};User=SA;Password={password};TrustServerCertificate=True";
       optionsBuilder.UseSqlServer(connectionString);
     }
 #if DEBUG
@@ -30,8 +34,8 @@ public class BlogContext : DbContext
         {
           UserId = 1,
           Email = "visitor@blog.com",
-          FirstName = "You are",
-          LastName = "Hired",
+          FirstName = "Tech",
+          LastName = "Lead",
           Salt = "text",
           Hash = "Banana"
         }

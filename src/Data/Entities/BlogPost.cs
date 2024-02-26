@@ -9,7 +9,7 @@ public class BlogPost
   [Key]
   public int Id { get; set; }
   [Required, MaxLength(120)]
-  public string? Title { get; set; }
+  public string Title { get; set; }
   [Required, MaxLength(150)]
   public string? Slug { get; set; }
   public int CategoryId { get; set; }

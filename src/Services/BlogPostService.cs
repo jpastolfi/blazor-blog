@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 
 namespace blazor_blog.Services;
 
@@ -12,12 +13,25 @@ public class BlogPostService(BlogContext context) : IBlogPostService
     .Select(BlogPostDTO.Selector)
     .FirstOrDefaultAsync(bp => bp.Id == blogPostId);
 
-  public async Task<IEnumerable<BlogPost>> GetPosts() =>
-  await _context.BlogPosts
-    .Include(bp => bp.Category)
-    .AsNoTracking()
-    .ToListAsync();
+  public async Task<IEnumerable<BlogPost>> GetPosts(bool IsPublished = false, string? CategorySlug = null)
+  {
+    var query = _context.BlogPosts.Include(bp => bp.Category).AsNoTracking();
 
+    if (!string.IsNullOrWhiteSpace(CategorySlug))
+    {
+      var CategoryId = await _context.Categories.AsNoTracking().Where(c => c.Slug == CategorySlug).Select(c => c.Id).FirstOrDefaultAsync();
+      if (CategoryId > 0)
+      {
+        query = query.Where(bp => bp.CategoryId == CategoryId);
+      }
+    }
+
+    if (IsPublished)
+    {
+      query = query.Where(bp => bp.IsPublished);
+    }
+    return await query.ToListAsync();
+  }
   public async Task<CreatedCategory> SavePost(BlogPostDTO post, int userId)
   {
     if (post.Id == 0)
@@ -87,5 +101,12 @@ public class BlogPostService(BlogContext context) : IBlogPostService
     {
       return CreatedCategory.Failure(ex.Message);
     }
+  }
+  public async Task<BlogPost?> GetPostBySlug(string slug)
+  {
+    return await _context.BlogPosts
+      .Include(bp => bp.Category)
+      .AsNoTracking()
+      .FirstOrDefaultAsync(bp => bp.IsPublished && bp.Slug == slug);
   }
 }

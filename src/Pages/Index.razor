@@ -1,11 +1,76 @@
 ﻿@page "/"
+@page "/c/{categorySlug}/posts";
 
-<PageTitle>Lastest posts</PageTitle>
+@using blazor_blog.Components;
+@inject BlogPostService BlogPostService;
+@inject CategoryService CategoryService;
+
+<PageTitle>@heading</PageTitle>
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-3">Blog posts</div>
-    <div class="col-sm-3">Categories</div>
+    <div class="col-sm-9" <h1 class="fs-3">@heading</h1>
+      <hr>
+      @if (!posts.Any())
+      {
+        <div class="d-flex justify-content-center flex-column align-items-center" style="min-height: 250px;">
+          <h3>No blog posts to display</h3>
+          <AuthorizeView>
+            <Authorized>
+              <NavLink href="/admin/manage-blogs/new" class="btn btn-primary">Click here to create a new blog post
+              </NavLink>
+            </Authorized>
+            <NotAuthorized>
+              <p>Please check back later</p>
+            </NotAuthorized>
+          </AuthorizeView>
+        </div>
+      }
+      else
+      {
+        <BlogPostsList Posts=posts />
+      }
+    </div>
+    <div class="col-sm-3">
+      <h3>Categories</h3>
+      <hr>
+      <ul class="list-unstyled ">
+        @foreach (var category in categories)
+        {
+          string categoryPostsLink = $"/c/{category.Slug}/posts";
+          <li class="mb-1 border-bottom p-3">
+            <NavLink href="@categoryPostsLink" class="text-decoration-none fs-6 py-2 d-block text-truncate">
+              @category.Name</NavLink>
+          </li>
+        }
+      </ul>
+    </div>
   </div>
-
 </div>
+
+@code {
+  [Parameter]
+  public string CategorySlug { get; set; }
+  private string heading = "Latest post";
+
+  private IEnumerable<BlogPost> posts = Enumerable.Empty<BlogPost>();
+  private IEnumerable<Category> categories = Enumerable.Empty<Category>();
+  protected override async Task OnParametersSetAsync()
+  {
+    await LoadData();
+  }
+  private async Task LoadData()
+  {
+    if (!categories.Any()) categories = await CategoryService.GetCategories();
+    if (!string.IsNullOrWhiteSpace(CategorySlug))
+    {
+      string categoryName = categories.Where(c => c.Slug == CategorySlug).First().Name;
+      heading = $"Latest {categoryName} Posts";
+    }
+    else
+    {
+      heading = "Latest post";
+    }
+    posts = await BlogPostService.GetPosts(IsPublished: true, CategorySlug);
+  }
+}

@@ -1,0 +1,70 @@
+@page "/posts/{slug}"
+@inject BlogPostService BlogPostService;
+@inject CategoryService CategoryService;
+
+<PageTitle>@post.Title</PageTitle>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+      @if (notFound)
+      {
+        <div class="d-flex justify-content-center flex-column align-items-center" style="min-height: 250px;">
+          <h3>Not found</h3>
+          <NavLink href="/" class="btn btn-primary ">Click here to see the latest blog posts</NavLink>
+        </div>
+      }
+      else if (post.Id > 0)
+      {
+        string categoryTitle = $"{@post.CategoryName} Blog Post";
+        string categoryPostsLink = $"/c/{post.Category.Slug}/posts";
+        string currentColor = Utilities.GetRandomColorClass();
+        <h1 class="fs-1 bg-@currentColor text-white p-5 rounded">@post.Title</h1>
+        <hr>
+        <small>
+          <label>
+            <NavLink href="@categoryPostsLink" class="text-decoration-none" title=@categoryTitle>
+              @post.CategoryName
+            </NavLink>
+          </label>
+          <label>
+            @post.PublishedOn.Value.ToShortDateString();
+          </label>
+        </small>
+        <p class="fs-6"></p>
+      }
+      else
+      {
+        <p>Fetching blog post</p>
+      }
+      <hr>
+    </div>
+    <div class="col-sm-3">
+
+    </div>
+  </div>
+</div>
+
+@code {
+  [Parameter]
+  public string Slug { get; set; }
+  private BlogPost? post = new();
+  private bool notFound = false;
+  private IEnumerable<Category> categories = Enumerable.Empty<Category>();
+  protected override async Task OnInitializedAsync()
+  {
+    if (!categories.Any()) categories = await CategoryService.GetCategories();
+    if (!string.IsNullOrWhiteSpace(Slug))
+    {
+      var dbBlog = await BlogPostService.GetPostBySlug(Slug);
+      if (dbBlog is null)
+      {
+        notFound = true;
+      }
+      else
+      {
+        post = dbBlog;
+      }
+    }
+  }
+}

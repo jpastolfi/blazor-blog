@@ -6,7 +6,6 @@ namespace blazor_blog.Services;
 public class BlogPostService(BlogContext context) : IBlogPostService
 {
   private readonly BlogContext _context = context;
-
   public async Task<BlogPostDTO?> GetPost(int blogPostId) => await _context.BlogPosts
     .Include(bp => bp.Category)
     .AsNoTracking()
@@ -30,7 +29,15 @@ public class BlogPostService(BlogContext context) : IBlogPostService
     {
       query = query.Where(bp => bp.IsPublished);
     }
-    return await query.ToListAsync();
+    try
+    {
+      return query.ToList();
+    }
+    catch (Exception ex)
+    {
+      Console.WriteLine("Error: " + ex.Message);
+      return new List<BlogPost>();
+    }
   }
   public async Task<CreatedCategory> SavePost(BlogPostDTO post, int userId)
   {

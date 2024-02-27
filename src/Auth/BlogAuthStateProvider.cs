@@ -26,10 +26,17 @@ public class BlogAuthStateProvider : AuthenticationStateProvider, IDisposable
   public override async Task<AuthenticationState> GetAuthenticationStateAsync()
   {
     var claimsPrincipal = new ClaimsPrincipal();
-    var user = await _authService.GetUserFromStorage();
-    if (user is not null)
+    try
     {
-      claimsPrincipal = GetClaimsPrincipalFromUser(user.Value);
+      var user = await _authService.GetUserFromStorage();
+      if (user is not null)
+      {
+        claimsPrincipal = GetClaimsPrincipalFromUser(user.Value);
+      }
+    }
+    catch (Exception ex)
+    {
+      Console.WriteLine("O erro foi: " + ex.Message);
     }
     var authState = new AuthenticationState(claimsPrincipal);
     NotifyAuthenticationStateChanged(Task.FromResult(authState));

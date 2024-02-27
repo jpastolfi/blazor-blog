@@ -88,6 +88,10 @@
     {
       posts = await BlogPostService.GetPosts();
     }
+    catch (Exception ex)
+    {
+      Console.WriteLine(ex.Message);
+    }
     finally
     {
       isLoading = false;

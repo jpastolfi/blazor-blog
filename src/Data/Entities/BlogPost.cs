@@ -21,7 +21,7 @@ public class BlogPost
   public bool IsPublished { get; set; }
   public DateTime? PublishedOn { get; set; }
   public DateTime? ModifiedOn { get; set; }
-  public virtual Category Category { get; set; }
+  public virtual Category? Category { get; set; }
   public virtual User User { get; set; }
   [ForeignKey("UserId")]
   public int UserId { get; set; }

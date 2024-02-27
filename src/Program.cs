@@ -6,16 +6,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
-builder.Services.AddTransient<UserService>()
-                .AddTransient<CategoryService>()
-                .AddTransient<BlogPostService>();
+builder.Services.AddScoped<UserService>()
+                .AddScoped<CategoryService>()
+                .AddScoped<BlogPostService>();
 
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<BlogAuthStateProvider>();
 builder.Services.AddScoped<AuthenticationStateProvider>(serviceProvider => serviceProvider.GetRequiredService<BlogAuthStateProvider>());
 
 builder.Services.AddDbContext<BlogContext>();
-
+builder.Services.AddScoped<BlogContext>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

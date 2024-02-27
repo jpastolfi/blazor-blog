@@ -40,7 +40,18 @@
       <hr>
     </div>
     <div class="col-sm-3">
-
+      <h3>Categories</h3>
+      <hr>
+      <ul class="list-unstyled ">
+        @foreach (var category in categories)
+        {
+          string categoryPostsLink = $"/c/{category.Slug}/posts";
+          <li class="mb-1 border-bottom p-3">
+            <NavLink href="@categoryPostsLink" class="text-decoration-none fs-6 py-2 d-block text-truncate">
+              @category.Name</NavLink>
+          </li>
+        }
+      </ul>
     </div>
   </div>
 </div>

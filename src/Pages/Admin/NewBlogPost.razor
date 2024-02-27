@@ -1,5 +1,7 @@
 @page "/admin/manage-blogs/new"
 @page "/admin/manage-blogs/edit/{urlBlogId:int?}"
+@attribute [Authorize]
+
 
 @inject CategoryService CategoryService;
 @inject BlogPostService BlogPostService;

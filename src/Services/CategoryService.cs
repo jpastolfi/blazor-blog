@@ -6,7 +6,10 @@ namespace blazor_blog.Services;
 public class CategoryService(BlogContext context) : ICategoryService
 {
   private readonly BlogContext _context = context;
-  public async Task<IEnumerable<Category>> GetCategories() => await _context.Categories.AsNoTracking().ToListAsync();
+  public async Task<IEnumerable<Category>> GetCategories()
+  {
+    return await _context.Categories.AsNoTracking().ToListAsync();
+  }
 
   public async Task<CreatedCategory> SaveCategory(Category model)
   {

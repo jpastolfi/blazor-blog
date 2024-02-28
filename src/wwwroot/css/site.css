@@ -69,6 +69,8 @@ a, .btn-link {
 
 :root{
     --main-color: #3a9119;
+    --white: #ffffff;
+    --gradient: linear-gradient(180deg, rgba($white, .15), rgba($white, 0));
 }
 
 .bg-main-color {

@@ -109,11 +109,11 @@ public class BlogPostService(BlogContext context) : IBlogPostService
       return CreatedCategory.Failure(ex.Message);
     }
   }
-  public async Task<BlogPost?> GetPostBySlug(string slug)
+  public async Task<BlogPost?> GetPostBySlug(string slug, int id)
   {
     return await _context.BlogPosts
       .Include(bp => bp.Category)
       .AsNoTracking()
-      .FirstOrDefaultAsync(bp => bp.IsPublished && bp.Slug == slug);
+      .FirstOrDefaultAsync(bp => bp.IsPublished && bp.Slug == slug && bp.Id == id);
   }
 }

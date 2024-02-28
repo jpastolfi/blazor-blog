@@ -27,7 +27,10 @@
       <AuthorizeView>
         <Authorizing>Checking auth state</Authorizing>
         <Authorized>
-          <NavLink href="javascript:void()" class="btn btn-light disabled ">@context.User?.Identity?.Name</NavLink>
+          <NavLink href="javascript:void()" class="btn btn-light disabled ">
+            <i class="fa-regular fa-user" />
+            @context.User?.Identity?.Name
+          </NavLink>
           <button type="button" class="btn btn-primary" @onclick="LogoutAsync">Logout</button>
         </Authorized>
         <NotAuthorized>

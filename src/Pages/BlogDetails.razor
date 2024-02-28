@@ -1,4 +1,4 @@
-@page "/posts/{slug}"
+@page "/posts/{slug}/{id:int}"
 @inject BlogPostService BlogPostService;
 @inject CategoryService CategoryService;
 
@@ -19,19 +19,21 @@
         string categoryTitle = $"{@post.CategoryName} Blog Post";
         string categoryPostsLink = $"/c/{post.Category.Slug}/posts";
         string currentColor = Utilities.GetRandomColorClass();
-        <h1 class="fs-1 bg-@currentColor text-white p-5 rounded">@post.Title</h1>
+        <h1 class="fs-1 bg-success bg-opacity-50 text-white p-5 rounded text-center ">@post.Title</h1>
         <hr>
-        <small>
+        <small class="d-flex justify-content-between mb-5">
           <label>
             <NavLink href="@categoryPostsLink" class="text-decoration-none" title=@categoryTitle>
               @post.CategoryName
             </NavLink>
           </label>
           <label>
-            @post.PublishedOn.Value.ToShortDateString();
+            Posted on @post.PublishedOn.Value.ToShortDateString();
           </label>
         </small>
-        <p class="fs-6"></p>
+        <p class="lead">@post.Introduction</p>
+        <hr>
+        <p>@post.Content.Replace("<p>", "").Replace("</p>", "")</p>
       }
       else
       {
@@ -58,6 +60,8 @@
 
 @code {
   [Parameter]
+  public int id { get; set; }
+  [Parameter]
   public string Slug { get; set; }
   private BlogPost? post = new();
   private bool notFound = false;
@@ -67,7 +71,7 @@
     if (!categories.Any()) categories = await CategoryService.GetCategories();
     if (!string.IsNullOrWhiteSpace(Slug))
     {
-      var dbBlog = await BlogPostService.GetPostBySlug(Slug);
+      var dbBlog = await BlogPostService.GetPostBySlug(Slug, id);
       if (dbBlog is null)
       {
         notFound = true;

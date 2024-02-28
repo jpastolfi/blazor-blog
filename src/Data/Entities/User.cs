@@ -15,5 +15,4 @@ public class User
   public string? Salt { get; set; }
   [Required, MaxLength(100)]
   public string? Hash { get; set; }
-
 }

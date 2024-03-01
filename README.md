@@ -39,7 +39,15 @@ cd blazor-blog
 docker-compose up -d --build
 ```
 
-This will start the application and the database container. You can access the application at http://localhost:8080/.
+This will start the application and the database container. 
+
+Before using the application you have to run the migrations with the following commands:
+```bash
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+```
+
+After this you can access the application at http://localhost:8080/.
 
 ### Usage
 
@@ -62,5 +70,3 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 * This application is a work in progress and may contain bugs or incomplete features.
 * The application is designed for demonstration purposes and might require further configuration or adjustments for production use.
-
-This README provides a basic overview of the blazor-blog application. Feel free to explore the codebase and documentation for further details and customization options.

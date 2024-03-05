@@ -51,22 +51,9 @@ After this you can access the application at http://localhost:8080/.
 
 ### Usage
 
-1. **Register or log in:** Navigate to http://localhost:5000/ and register for a new account or log in with an existing one.
+1. **Log in:** Navigate to http://localhost:8080/ and log in with the username visitor@blog.com
 2. **Browse blog posts:** Registered users can view all blog posts, while visitors can only see published posts.
-3. **Create and manage blog posts:** Registered users can create new blog posts, edit their existing posts, and delete them.
-4. **Manage categories (admin only):** Administrators can create, edit, and delete categories.
+3. **Create and manage blog posts:** Registered users can create new blog posts and edit their existing ones.
+4. **Manage categories:** Registered users can create, edit, and delete categories.
 
 **Note:** Only registered users can create blog posts and manage their own posts. Admins have full access to manage all aspects of the blog, including users, categories, and blog posts.
-
-### Contributing
-
-We welcome contributions to this project! Please see the CONTRIBUTING.md file for guidelines on how to contribute.
-
-### License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-### Additional Information
-
-* This application is a work in progress and may contain bugs or incomplete features.
-* The application is designed for demonstration purposes and might require further configuration or adjustments for production use.
